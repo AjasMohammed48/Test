@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ajas Mohammed | Data Analyst, ML Engineer & AI Engineer</title>
+<meta name="description" content="Ajas Mohammed is a Data Analyst, Machine Learning Engineer and AI Engineer based in Dubai, UAE. Available immediately.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23e11d2e'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Arial' font-weight='900' text-anchor='middle' fill='white'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07070a;--red:#ff2b3f;--red2:#b3001b;--tx:#f5ecec;--mu:#a99ca0;--gl:rgba(255,255,255,.055);--bd:rgba(255,255,255,.13);--d:'Syne','Arial Black',sans-serif;--b:'Manrope','Segoe UI',Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--tx);font:400 16px/1.65 var(--b);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+#glow{position:fixed;left:0;top:0;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;background:radial-gradient(circle,rgba(255,43,63,.15),transparent 65%);pointer-events:none;z-index:1;will-change:transform}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--red2),var(--red));z-index:99;box-shadow:0 0 12px var(--red)}
+main,footer{position:relative;z-index:2}
+.g{background:var(--gl);border:1px solid var(--bd);border-radius:22px;-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 20px 50px rgba(0,0,0,.45);position:relative;overflow:hidden}
+.g::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(255,43,63,.22),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.g:hover::before{opacity:1}
+nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:90;display:flex;align-items:center;gap:6px;padding:8px 10px 8px 22px;border-radius:99px;width:min(940px,calc(100% - 24px))}
+nav b{font:800 18px var(--d);letter-spacing:.5px;margin-right:auto}
+nav b i{color:var(--red);font-style:normal}
+nav a.l{padding:8px 14px;border-radius:99px;font-size:14px;color:var(--mu);transition:.25s}
+nav a.l:hover,nav a.l.on{color:#fff;background:rgba(255,43,63,.18)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:99px;font-weight:700;font-size:15px;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;box-shadow:0 8px 30px rgba(255,43,63,.38);transition:.3s;border:0;cursor:pointer;font-family:var(--b)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(255,43,63,.55)}
+.btn.o{background:var(--gl);border:1px solid var(--bd);box-shadow:none;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+nav .btn{padding:9px 20px;font-size:14px}
+section{padding:110px max(20px,calc(50% - 560px));position:relative}
+h2{font:800 clamp(34px,5.5vw,60px)/1.05 var(--d);margin-bottom:12px;letter-spacing:-1px}
+h2+p.s{color:var(--mu);max-width:560px;margin-bottom:46px}
+h2::after{content:"";display:block;width:64px;height:4px;border-radius:4px;background:var(--red);margin-top:16px;box-shadow:0 0 16px var(--red)}
+.rv{opacity:0;transform:translateY(34px);filter:blur(14px);transition:opacity .9s,transform .9s cubic-bezier(.2,.7,.2,1),filter .9s}
+.rv.in{opacity:1;transform:none;filter:none}
+/* hero */
+#home{min-height:100vh;display:grid;grid-template-columns:.95fr 1.05fr;align-items:center;gap:20px;padding-top:120px}
+.ph{position:relative;display:flex;justify-content:center}
+.ph::before{content:"";position:absolute;width:88%;aspect-ratio:1;bottom:2%;border-radius:50%;background:radial-gradient(circle,rgba(255,43,63,.65),rgba(179,0,27,.22) 55%,transparent 70%);filter:blur(30px);animation:pulse 5s ease-in-out infinite}
+.ph::after{content:"";position:absolute;width:80%;aspect-ratio:1;bottom:6%;border-radius:50%;border:1px dashed rgba(255,43,63,.5);animation:spin 40s linear infinite}
+.ph img{position:relative;z-index:2;width:min(440px,100%);filter:drop-shadow(0 30px 40px rgba(0,0,0,.6));-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent);will-change:transform}
+.chip{position:absolute;z-index:3;padding:10px 16px;border-radius:16px;font-size:13px;font-weight:600;animation:fl 6s ease-in-out infinite}
+.chip small{display:block;color:var(--mu);font-weight:500;font-size:11px}
+.c1{left:-2%;top:18%}.c2{right:0;bottom:22%;animation-delay:-3s}
+@keyframes fl{50%{transform:translateY(-14px)}}@keyframes pulse{50%{opacity:.6;transform:scale(1.07)}}@keyframes spin{to{transform:rotate(360deg)}}
+.hi h1{font:800 clamp(44px,7.4vw,94px)/.95 var(--d);letter-spacing:-2px;margin:10px 0 18px;text-shadow:0 0 60px rgba(255,43,63,.35)}
+.hi .role{font:700 clamp(18px,2.4vw,26px) var(--d);color:var(--red);min-height:1.5em}
+.hi .role::after{content:"|";margin-left:3px;animation:bl 1s steps(1) infinite;color:#fff}
+@keyframes bl{50%{opacity:0}}
+.hi p.t{color:var(--mu);max-width:500px;margin:12px 0 26px;font-size:17px}
+.av{display:inline-flex;gap:8px;align-items:center;padding:6px 14px;border-radius:99px;font-size:13px;font-weight:600;background:rgba(255,43,63,.12);border:1px solid rgba(255,43,63,.35)}
+.av i{width:8px;height:8px;border-radius:50%;background:#2dff7a;box-shadow:0 0 10px #2dff7a;animation:pulse 2s infinite}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}
+.stats div{padding:16px 10px;text-align:center;border-radius:18px}
+.stats b{display:block;font:800 30px var(--d);color:#fff}
+.stats span{font-size:12px;color:var(--mu)}
+/* about */
+.ab{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:center}
+.pf{padding:26px 26px 0;text-align:center;transform-style:preserve-3d}
+.pf img{width:100%;display:block;margin-top:6px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5))}
+.pf::after{content:"Ajas Mohammed · Dubai, UAE";position:absolute;left:0;right:0;bottom:0;padding:12px;font-size:13px;font-weight:600;background:linear-gradient(transparent,rgba(179,0,27,.75))}
+.at{padding:34px}
+.at p{color:#d9cdd0;margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tags span{padding:6px 14px;border-radius:99px;font-size:13px;background:rgba(255,255,255,.06);border:1px solid var(--bd)}
+/* curve sections */
+.pin{padding:0;position:relative}
+.sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;padding-top:84px}
+.pin h2{text-align:center;margin-bottom:0}.pin h2::after{margin:14px auto 0}
+.pin .sub{color:var(--mu);margin-top:10px;text-align:center;font-size:14px}
+.stage{position:relative;width:100%;flex:1;max-height:620px;perspective:1500px;perspective-origin:50% 35%;margin-top:6px}
+.it{position:absolute;left:50%;top:50%;will-change:transform,opacity;backface-visibility:hidden;cursor:pointer}
+.it::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#000;opacity:var(--dim,0);pointer-events:none}
+.it.g{-webkit-backdrop-filter:none;backdrop-filter:none;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(120,10,25,.24) 60%,rgba(18,4,8,.85))}
+.cnt{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font:700 13px var(--d);color:var(--mu);letter-spacing:2px}
+.ar{width:150px;height:224px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;border-radius:26px}
+.ar i{width:66px;height:66px;border-radius:15px;display:grid;place-items:center;font:800 26px var(--d);font-style:normal;background:#0c0710;border:2px solid var(--c);color:var(--c);box-shadow:0 0 26px color-mix(in srgb,var(--c) 45%,transparent)}
+.ar span{font-weight:700;font-size:13.5px;color:#ddd0d2;text-align:center}
+.flat .sticky{position:static;height:auto;overflow:visible;padding:110px 20px 40px}.flat .stage{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-height:none;perspective:none}.flat .it{position:relative;left:auto;top:auto}.flat .cnt{display:none}
+#stack .tiles{grid-template-columns:repeat(3,1fr);perspective:900px}
+.tile{padding:20px;transition:transform .15s ease-out;transform-style:preserve-3d}
+.tile h3{font:700 16px var(--d);color:var(--red);margin-bottom:8px}
+.tile p{font-size:13.5px;color:#d3c6c9;line-height:1.55}
+/* exp */
+.tl{position:relative;padding-left:34px;display:grid;gap:22px}
+.tl::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:rgba(255,255,255,.1)}
+.tl i.f{position:absolute;left:8px;top:6px;width:2px;height:0;background:linear-gradient(var(--red),var(--red2));box-shadow:0 0 12px var(--red)}
+.ex{padding:26px 28px}
+.ex::after{content:"";position:absolute;left:-34px;top:30px;width:14px;height:14px;border-radius:50%;background:var(--red);box-shadow:0 0 0 5px rgba(255,43,63,.2),0 0 16px var(--red)}
+.ex{overflow:visible}
+.hd{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.hd h3{font:700 20px var(--d)}.hd em{font-style:normal;color:var(--red);font-weight:700;font-size:14px}
+.ex .co{color:var(--mu);font-size:14px;margin-bottom:10px}
+.ex li{margin:0 0 7px 18px;color:#d9cdd0;font-size:15px}
+.ex li::marker{color:var(--red)}
+/* projects */
+.pc{width:min(360px,78vw);display:flex;flex-direction:column;border-radius:24px}
+.pv{height:200px;position:relative;overflow:hidden;background:#200308}
+.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.pv b{position:absolute;left:14px;bottom:14px;padding:4px 12px;border-radius:99px;font-size:12px;background:rgba(0,0,0,.55);border:1px solid var(--bd)}
+.pb{padding:20px}
+.pb h3{font:700 18px/1.25 var(--d);margin-bottom:8px}
+.pb p{font-size:13.5px;color:#d3c6c9;margin-bottom:12px;line-height:1.55}
+.pb .tags{margin:0 0 14px}.pb .tags span{font-size:11.5px;padding:3px 10px}
+.pb a{font-weight:700;font-size:14px;color:var(--red)}.pb em{font-size:13px;color:var(--mu);font-style:normal}
+/* cursor */
+#sp{position:fixed;inset:0;z-index:120;pointer-events:none}
+#cd,#cr{position:fixed;left:0;top:0;pointer-events:none;z-index:121;display:none;will-change:transform}
+body.fx #cd,body.fx #cr{display:block}
+#cd{width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#fff;box-shadow:0 0 12px var(--red),0 0 24px var(--red)}
+#cr{width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;border:1.5px solid rgba(255,43,63,.7)}
+body.fx,body.fx a,body.fx button,body.fx .it{cursor:none}
+body.fx input,body.fx textarea{cursor:text}
+/* misc */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{padding:28px}.card h3{font:700 20px var(--d);margin-bottom:14px}
+.card li{margin:0 0 10px 18px;color:#d9cdd0;font-size:15px}.card li::marker{color:var(--red)}
+.card small{color:var(--mu)}
+.ct{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px}
+.ci{padding:28px;display:grid;gap:16px;align-content:start}
+.ci a{display:flex;gap:14px;align-items:center;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--bd);transition:.25s;font-size:15px}
+.ci a:hover{border-color:var(--red);transform:translateX(6px)}
+.ci a small{display:block;color:var(--mu);font-size:12px}
+.ci a>b{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(255,43,63,.18);font-size:16px;flex:none}
+form{padding:28px;display:grid;gap:14px}
+label{font-size:13px;color:var(--mu);display:grid;gap:6px}
+input,textarea{width:100%;padding:13px 16px;border-radius:14px;border:1px solid var(--bd);background:rgba(0,0,0,.35);color:#fff;font:inherit;outline:0;transition:.25s}
+input:focus,textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(255,43,63,.2)}
+textarea{min-height:120px;resize:vertical}
+footer{text-align:center;padding:40px 20px;color:var(--mu);font-size:13px;border-top:1px solid var(--bd)}
+a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:860px){#home,.ab,.sk,.two,.ct{grid-template-columns:1fr}#home{padding-top:110px}.ph{order:-1}nav a.l{display:none}.stats{grid-template-columns:repeat(2,1fr)}.tiles,#stack .tiles{grid-template-columns:1fr}.c1{left:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none;filter:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas><div id="glow"></div><div id="bar"></div><canvas id="sp"></canvas><div id="cd"></div><div id="cr"></div>
+
+<nav class="g">
+  <b>AJAS<i>.</i></b>
+  <a class="l" href="#about">About</a><a class="l" href="#skills">Skills</a><a class="l" href="#experience">Experience</a><a class="l" href="#projects">Projects</a><a class="l" href="#contact">Contact</a>
+  <a class="btn" href="#contact">Hire me</a>
+</nav>
+
+<main>
+<section id="home">
+  <div class="ph rv">
+    <img id="hero" src="assets/hero.png" alt="Ajas Mohammed looking upward in profile">
+    <div class="chip g c1">Patent granted<small>OceanPulse, Mar 2026</small></div>
+    <div class="chip g c2">5M+ records<small>Airline KPI dashboard</small></div>
+  </div>
+  <div class="hi rv">
+    <span class="av"><i></i>Available immediately · Dubai, UAE</span>
+    <h1>Ajas<br>Mohammed</h1>
+    <div class="role" id="role"></div>
+    <p class="t">From raw data to working AI. I build dashboards that settle arguments, models that predict, and AI features people actually use.</p>
+    <div class="row"><a class="btn" href="#projects">See my work</a><a class="btn o" href="#contact">Let’s talk</a></div>
+    <div class="stats">
+      <div class="g"><b data-n="2" data-s="+">0</b><span>Years experience</span></div>
+      <div class="g"><b data-n="5" data-s="M+">0</b><span>Records analysed</span></div>
+      <div class="g"><b data-n="1">0</b><span>Patent granted</span></div>
+      <div class="g"><b data-n="40" data-s="%">0</b><span>Less manual prep</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="rv">About me</h2>
+  <div class="ab">
+    <div class="g pf rv" data-tilt><img src="assets/about.png" alt="Ajas Mohammed in a navy blazer"></div>
+    <div class="g at rv">
+      <p>I’m a data analyst and machine learning engineer with 2+ years of experience turning raw data into decisions for sales and business stakeholders across the UAE and UK.</p>
+      <p>I’m advanced in Power BI (DAX, Power Query) and Excel, strong in Python and SQL, and hold an MCA in AI &amp; ML from Lovely Professional University. I work independently from raw data to final insight, and I’m trusted with sensitive client data.</p>
+      <p>My patent-granted OceanPulse platform shows where I like to work: the point where analytics, machine learning and LLMs meet a real problem.</p>
+      <div class="tags"><span>Dubai, UAE</span><span>Visa transferable</span><span>Available immediately</span><span>Willing to learn any new tool or domain</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="pin" data-per=".42">
+  <div class="sticky"><h2 class="rv">My arsenal</h2><p class="sub">Scroll to ride the curve</p><div class="stage" id="ars"></div><div class="cnt"></div></div>
+</section>
+
+<section id="stack">
+  <h2 class="rv">Everything I work with</h2>
+  <div class="tiles rv">
+      <div class="g tile" data-tilt><h3>Programming</h3><p>Python, SQL, C++, C</p></div>
+      <div class="g tile" data-tilt><h3>Data analytics</h3><p>Pandas, NumPy, Excel, Power Query, Statistics, Data Cleaning, KPI Analysis</p></div>
+      <div class="g tile" data-tilt><h3>BI &amp; reporting</h3><p>Power BI, DAX, Dashboards, Business Intelligence, IBM Cognos</p></div>
+      <div class="g tile" data-tilt><h3>AI &amp; machine learning</h3><p>Scikit-learn, XGBoost, PyTorch, LLMs, RAG, NLP, OpenCV, Feature Engineering</p></div>
+      <div class="g tile" data-tilt><h3>Data &amp; big data</h3><p>MySQL, SQL Server, Microsoft Fabric, Spark, PySpark, Hadoop</p></div>
+      <div class="g tile" data-tilt><h3>Tools &amp; AI assistants</h3><p>Git, Linux, AWS, Streamlit, Figma, Vercel, GitHub Copilot, ChatGPT Codex, Claude, Prompt Engineering</p></div>
+      <div class="g tile" data-tilt style="grid-column:1/-1"><h3>Soft skills</h3><p>Business Analysis, Requirements Analysis, Stakeholder Communication, Data Storytelling, Problem Solving, Client Relationships, Ownership, Attention to Detail, Leadership, Adaptability, willing to learn any new tool or domain</p></div>
+  </div>
+</section>
+
+<section id="experience">
+  <h2 class="rv">Experience</h2>
+  <div class="tl" id="tl"><i class="f"></i>
+    <div class="g ex rv">
+      <div class="hd"><h3>Data Analyst &amp; Machine Learning Engineer</h3><em>Feb 2025 – May 2026</em></div>
+      <div class="co">Hostlane Technolab · Kerala, India</div>
+      <ul>
+        <li>Analysed client data across e-commerce, hospitality, retail, manufacturing and textile, turning trends into clear business recommendations.</li>
+        <li>Built interactive Power BI and Excel dashboards with SQL, Python and Microsoft Fabric to track KPIs and benchmark performance.</li>
+        <li>Ran competitor analysis with web scraping, and built hybrid recommendation systems (collaborative + content-based filtering).</li>
+        <li>Built ML models and LLM-based AI agents with Python and Scikit-learn for predictive analytics and workflow automation.</li>
+        <li>Ran A/B tests to guide release decisions, and automated repetitive analysis with AI-assisted workflows, saving about 40% of time.</li>
+      </ul>
+    </div>
+    <div class="g ex rv">
+      <div class="hd"><h3>Machine Learning Associate</h3><em>Oct 2023 – May 2024</em></div>
+      <div class="co">KELTRON (Kerala State Electronics Development Corp.) · Kerala, India</div>
+      <ul>
+        <li>Built feature engineering and ETL pipelines (Pandas, NumPy) across 5+ government datasets, cutting ingestion errors by 30%.</li>
+        <li>Ran batch ML data workflows across 4 modelling projects, reducing manual data prep by 40% and pipeline turnaround by 25%.</li>
+        <li>Used EDA, hypothesis testing and distribution analysis to find data quality issues and anomalies, improving downstream model performance.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="pin" data-per=".6">
+  <div class="sticky"><h2 class="rv">Projects</h2><p class="sub">Scroll to move along the curve · click a side card to bring it forward</p><div class="stage" id="prj"></div><div class="cnt"></div></div>
+</section>
+
+<section id="achievements">
+  <h2 class="rv">Achievements &amp; education</h2>
+  <div class="two">
+    <div class="g card rv"><h3>Achievements</h3><ul>
+      <li>Patent granted, Lovely Professional University (Mar 2026): “System and Method for Physics-Constrained Ocean Intelligence Using Multi-Source Environmental Data”</li>
+      <li>CS250: Python for Data Science (2025)</li>
+      <li>Data Visualization with Python, IBM (2024)</li>
+      <li>Workshop: “Unleashing Innovation: The Generative AI Revolution”, AWS (2024)</li></ul></div>
+    <div class="g card rv"><h3>Education</h3><ul>
+      <li><b>MCA in AI &amp; Machine Learning</b>, Lovely Professional University, Punjab<br><small>Aug 2024 – May 2026 · CGPA 7.79</small></li>
+      <li><b>Bachelor of Computer Science</b>, University Institute of Technology, Kerala<br><small>Oct 2021 – May 2024 · CGPA 7.4</small></li></ul>
+      <h3 style="margin-top:20px">Languages</h3><div class="tags" style="margin:0"><span>English (fluent)</span><span>Hindi (intermediate)</span><span>Malayalam (native)</span><span>Tamil (intermediate)</span></div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="rv">Contact</h2>
+  <p class="s rv">Currently in Dubai, UAE, available immediately with a transferable visa.</p>
+  <div class="ct">
+    <div class="g ci rv">
+      <a href="mailto:ajasmohd48@gmail.com"><b>✉</b><span><small>Email</small>ajasmohd48@gmail.com</span></a>
+      <a href="https://wa.me/971503274506" target="_blank" rel="noopener"><b>☎</b><span><small>UAE · call or WhatsApp</small>+971 50 327 4506</span></a>
+      <a href="https://wa.me/918547862563" target="_blank" rel="noopener"><b>☎</b><span><small>India · call or WhatsApp</small>+91 85478 62563</span></a>
+      <a href="https://www.linkedin.com/in/ajas-mohammed-771265291" target="_blank" rel="noopener"><b>in</b><span><small>LinkedIn</small>Ajas Mohammed</span></a>
+      <a href="https://github.com/AjasMohammed48" target="_blank" rel="noopener"><b>⌥</b><span><small>GitHub</small>AjasMohammed48</span></a>
+    </div>
+    <form class="g rv" id="cf">
+      <label>Your name<input name="n" required autocomplete="name"></label>
+      <label>Your email<input name="e" type="email" required autocomplete="email"></label>
+      <label>Message<textarea name="m" required placeholder="Tell me about the role or project"></textarea></label>
+      <button class="btn" type="submit">Send message</button>
+    </form>
+  </div>
+</section>
+</main>
+<footer>© 2026 Ajas Mohammed · Data Analyst · Machine Learning Engineer · AI Engineer · Dubai, UAE</footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches,FINE=matchMedia('(hover:hover) and (pointer:fine)').matches;
+let sy=scrollY,mx=innerWidth/2,my=innerHeight/2,vh=innerHeight,dh=document.documentElement.scrollHeight;
+addEventListener('scroll',()=>sy=scrollY,{passive:true});
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
+new ResizeObserver(()=>{dh=document.documentElement.scrollHeight;vh=innerHeight}).observe(document.body);
+const tasks=[];let last=performance.now();
+(function loop(t){const dt=Math.min(50,t-last);last=t;for(const f of tasks)f(dt,t);requestAnimationFrame(loop)})(last);
+const ease=(dt,ms)=>1-Math.exp(-dt/ms);
+/* background orbs: pre-rendered sprite, one drawImage each */
+(()=>{const c=$('#bg'),x=c.getContext('2d'),sp=document.createElement('canvas');sp.width=sp.height=64;const q=sp.getContext('2d'),g=q.createRadialGradient(32,32,0,32,32,32);
+g.addColorStop(0,'rgba(255,70,85,1)');g.addColorStop(.3,'rgba(255,30,50,.4)');g.addColorStop(1,'rgba(255,30,50,0)');q.fillStyle=g;q.fillRect(0,0,64,64);
+let W,H;const rs=()=>{W=c.width=innerWidth;H=c.height=innerHeight};rs();addEventListener('resize',rs);
+const P=Array.from({length:46},()=>({x:Math.random(),y:Math.random(),z:14+Math.random()*70,s:.00003+Math.random()*.00008,a:.2+Math.random()*.6,d:Math.random()*6}));
+tasks.push((dt,t)=>{if(document.hidden)return;x.clearRect(0,0,W,H);const ox=(mx/W-.5),oy=(my/H-.5);
+for(const p of P){if(!RM){p.y-=p.s*dt;if(p.y<-.1){p.y=1.1;p.x=Math.random()}}
+x.globalAlpha=p.a*(.85+.15*Math.sin(t/1200+p.d));x.drawImage(sp,p.x*W+ox*p.z*.6-p.z/2,p.y*H+oy*p.z*.6-p.z/2,p.z,p.z)}})})();
+/* cursor: glow, dot, ring, sparks */
+(()=>{const gl=$('#glow');tasks.push(dt=>{gl.style.transform=`translate3d(${mx}px,${my}px,0)`});
+if(!FINE)return;document.body.classList.add('fx');
+const c=$('#sp'),x=c.getContext('2d'),dot=$('#cd'),ring=$('#cr'),dpr=Math.min(devicePixelRatio||1,2);let W,H;
+const rs=()=>{W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)};rs();addEventListener('resize',rs);
+const S=[];let px=mx,py=my,rx=mx,ry=my,hov=0;
+const emit=(X,Y,n,sp)=>{for(let i=0;i<n;i++){const a=Math.random()*6.283,v=(.3+Math.random())*sp;S.push({x:X,y:Y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-.5,l:0,m:380+Math.random()*420,w:.8+Math.random()*1.8,h:Math.random()*42})}if(S.length>240)S.splice(0,S.length-240)};
+addEventListener('pointermove',e=>{const d=Math.hypot(e.clientX-px,e.clientY-py);if(d>2)emit(e.clientX,e.clientY,Math.min(4,1+(d/14|0)),Math.min(2.4,.6+d/25));px=e.clientX;py=e.clientY},{passive:true});
+addEventListener('pointerdown',e=>emit(e.clientX,e.clientY,28,5));
+document.addEventListener('pointerover',e=>{hov=e.target.closest&&e.target.closest('a,button,.it,input,textarea,[data-tilt]')?1:0});
+tasks.push(dt=>{x.clearRect(0,0,W,H);x.globalCompositeOperation='lighter';x.lineCap='round';
+for(let i=S.length-1;i>=0;i--){const p=S[i];p.l+=dt;if(p.l>p.m){S.splice(i,1);continue}
+const k=1-p.l/p.m,ox=p.x,oy=p.y;p.vy+=.0024*dt;p.vx*=.985;p.x+=p.vx*dt/16;p.y+=p.vy*dt/16;
+x.strokeStyle=`hsla(${p.h},100%,${55+k*25}%,${k})`;x.lineWidth=p.w*k+.3;x.beginPath();x.moveTo(ox,oy);x.lineTo(p.x-p.vx*1.5,p.y-p.vy*1.5);x.stroke()}
+const e=ease(dt,70);rx+=(mx-rx)*e;ry+=(my-ry)*e;
+dot.style.transform=`translate3d(${mx}px,${my}px,0)`;ring.style.transform=`translate3d(${rx}px,${ry}px,0) scale(${hov?1.9:1})`})})();
+/* glass highlight + tilt */
+$$('.g').forEach(el=>el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.setProperty('--mx',e.clientX-r.left+'px');el.style.setProperty('--my',e.clientY-r.top+'px')},{passive:true}));
+$$('[data-tilt]').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),a=(e.clientX-r.left)/r.width-.5,b=(e.clientY-r.top)/r.height-.5;el.style.transform=`rotateY(${a*14}deg) rotateX(${-b*14}deg) translateZ(8px)`},{passive:true});el.addEventListener('pointerleave',()=>el.style.transform='')});
+/* progress, timeline, hero parallax (one loop) */
+const bar=$('#bar'),tlf=$('.tl .f'),tlw=$('#tl'),hero=$('#hero');let hx=0,hy=0,tlOn=false;
+new IntersectionObserver(e=>tlOn=e[0].isIntersecting).observe(tlw);
+tasks.push(dt=>{bar.style.transform=`scaleX(${sy/Math.max(1,dh-vh)})`;
+if(tlOn){const r=tlw.getBoundingClientRect();tlf.style.height=Math.max(0,Math.min(r.height-12,vh*.6-r.top))+'px'}
+if(!RM){const e=ease(dt,120);hx+=((mx/innerWidth-.5)*-16-hx)*e;hy+=((my/vh-.5)*-10-hy)*e;hero.style.transform=`translate3d(${hx}px,${hy}px,0)`}});
+bar.style.width='100%';bar.style.transformOrigin='0 50%';
+/* nav highlight + reveal + counters */
+const links=$$('nav a.l');
+const navIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-40% 0px -55% 0px'});
+$$('main section[id]').forEach(sec=>navIO.observe(sec));
+function cn(el){const n=+el.dataset.n,s=el.dataset.s||'';let t0;(function f(t){t0=t0||t;const p=Math.min((t-t0)/1600,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3)))+(p>=1?s:'');if(p<1)requestAnimationFrame(f)})(performance.now())}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');$$('[data-n]',e.target).forEach(cn);io.unobserve(e.target)}}),{threshold:.12});
+$$('.rv').forEach(el=>io.observe(el));
+(()=>{const R=['Data Analyst','Machine Learning Engineer','AI Engineer'],el=$('#role');if(RM){el.textContent=R.join(' · ');return}
+let i=0,j=0,del=0;(function f(){const w=R[i];el.textContent=w.slice(0,j);
+if(!del&&j<w.length){j++;setTimeout(f,70)}else if(!del){del=1;setTimeout(f,1400)}else if(j>0){j--;setTimeout(f,35)}else{del=0;i=(i+1)%R.length;setTimeout(f,300)}})()})();
+/* curve scroll engine: pinned section, items ride an arc driven by scroll */
+function curve(sec,items,cfg){const cnt=$('.cnt',sec);let cur=0,top=0,span=1,cw=300,N=items.length,shown=-1;
+if(RM){sec.classList.add('flat');return}
+const meas=()=>{sec.style.height=(innerHeight+(N-1)*innerHeight*cfg.per)+'px';top=sec.offsetTop;span=sec.offsetHeight-innerHeight;cw=items[0].offsetWidth+(innerWidth<700?-20:0)};
+meas();addEventListener('resize',meas);addEventListener('load',meas);
+items.forEach((el,i)=>el.addEventListener('click',()=>{if(Math.abs(i-cur)>.5)scrollTo({top:top+i/(N-1)*span,behavior:'smooth'})}));
+tasks.push(dt=>{const r=sec.getBoundingClientRect();if(r.bottom<-80||r.top>innerHeight+80)return;
+const tgt=Math.min(1,Math.max(0,(sy-top)/span))*(N-1);cur+=(tgt-cur)*ease(dt,150);if(Math.abs(tgt-cur)<.001)cur=tgt;
+for(let i=0;i<N;i++){const el=items[i],d=i-cur,a=Math.abs(d),o=Math.max(0,Math.min(1,1-(a-.4)*cfg.fade));
+el.style.visibility=o<.02?'hidden':'visible';if(o<.02)continue;
+const ry=Math.max(-75,Math.min(75,-d*cfg.rot));
+el.style.transform=`translate(-50%,-50%) translate3d(${d*cw*cfg.gap}px,${d*d*cfg.curve}px,${-Math.min(a,3)*cfg.depth}px) rotateY(${ry}deg) rotateZ(${d*cfg.tilt}deg) scale(${1-Math.min(a,3)*.06})`;
+el.style.opacity=o;el.style.zIndex=100-Math.round(a*10);el.style.pointerEvents=a<.5?'auto':'none';el.style.setProperty('--dim',Math.min(.6,a*.35))}
+const n=Math.round(cur)+1;if(n!==shown){shown=n;cnt.textContent=String(n).padStart(2,'0')+' / '+String(N).padStart(2,'0')}})}
+(()=>{const A=[['Python','Py','#ffd43b'],['SQL','SQL','#4fb3ff'],['Power BI','BI','#f2c811'],['Excel','Xl','#35d07f'],['DAX','Dx','#ff6b6b'],['Pandas','Pd','#a78bfa'],['Scikit-learn','Sk','#ff9a3c'],['PyTorch','Pt','#ff5a3c'],['XGBoost','Xg','#5ad1ff'],['LLMs & RAG','AI','#ff2b3f'],['Apache Spark','Sp','#ff8a00'],['Microsoft Fabric','Fb','#33d6a6'],['Streamlit','St','#ff4b6e'],['Git & AWS','Git','#ffa726']],st=$('#ars');
+const els=A.map(a=>{const e=document.createElement('div');e.className='g it ar';e.style.setProperty('--c',a[2]);e.innerHTML=`<i${a[1].length>2?' style="font-size:20px"':''}>${a[1]}</i><span>${a[0]}</span>`;st.appendChild(e);return e});
+curve($('#skills'),els,{per:.42,gap:1.18,curve:34,rot:16,depth:50,tilt:0,fade:.2})})();
+(()=>{const D=[
+['OceanPulse: Physics-Constrained Ocean Intelligence','Patent granted','Physics-informed AI on Indian Ocean climate data (ERA5, CMEMS) with Dask and Zarr, real-time anomaly detection and a domain-constrained Ollama LLM interface.',['Python','Ollama','xarray','Dask','Zarr','React'],'https://github.com/AjasMohammed48/OceanPulse'],
+['PriceIQ: AI-Powered Dynamic Pricing Engine','Machine learning','XGBoost demand forecasting plus a reinforcement learning (DQN, PyTorch) agent balancing revenue and fair pricing, fed by competitor and weather signals.',['Python','Streamlit','XGBoost','PyTorch','SQLite'],'https://github.com/AjasMohammed48/Dynamic-Pricing-Engine'],
+['Airline Intelligence Dashboard','Power BI','Four-page dashboard over 5M+ flight records across 14 airlines: delay root causes and on-time KPIs with drill-through filters and DAX measures.',['Power BI','DAX','Power Query']],
+['Swiggy Sales & Revenue Dashboard','Excel','Interactive Excel dashboard for order volume, revenue growth and category performance, modelled with Power Query and Power Pivot.',['Excel','Power Query','Power Pivot']],
+['Hybrid Recommendation Engine','Client work','Collaborative and content-based filtering combined to deliver personalised recommendations inside client software, evaluated before release.',['Python','Scikit-learn','Pandas']],
+['Competitor Intelligence Tracker','Client work','Web scraping and external data turned into insight on market trends, competitive positioning and growth opportunities for clients.',['Python','Web scraping','Power BI']],
+['Government ML Data Pipelines','KELTRON','Feature engineering and ETL across 5+ government datasets: 30% fewer ingestion errors, 40% less manual prep, 25% faster turnaround.',['Pandas','NumPy','ETL','EDA']],
+['AI Agents & Workflow Automation','Client work','LLM-based agents and A/B testing that automated repetitive analysis (about 40% time saved) and guided release decisions.',['Python','LLMs','A/B testing']]],st=$('#prj');
+const els=D.map((d,i)=>{const e=document.createElement('article');e.className='g it pc';
+e.innerHTML=`<div class="pv"><img src="assets/p${i+1}.jpg" alt="${d[0]} artwork" loading="lazy" decoding="async"><b>${d[1]}</b></div><div class="pb"><h3>${d[0]}</h3><p>${d[2]}</p><div class="tags">${d[3].map(k=>`<span>${k}</span>`).join('')}</div>${d[4]?`<a href="${d[4]}" target="_blank" rel="noopener">View on GitHub ↗</a>`:'<em>Details on request</em>'}</div>`;st.appendChild(e);return e});
+curve($('#projects'),els,{per:.6,gap:.95,curve:46,rot:34,depth:130,tilt:2.5,fade:.3})})();
+$('#cf').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target);
+location.href=`mailto:ajasmohd48@gmail.com?subject=${encodeURIComponent('Portfolio enquiry from '+f.get('n'))}&body=${encodeURIComponent(f.get('m')+'\n\n'+f.get('n')+'\n'+f.get('e'))}`});
+</script>
+</body>
+</html>
