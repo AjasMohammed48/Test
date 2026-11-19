@@ -102,7 +102,7 @@ h2::after{content:"";display:block;width:64px;height:4px;border-radius:4px;backg
 /* projects: panorama ring (a square room of project pages, seen from its centre, turning one wall at a time) */
 #projects h2{text-align:center}#projects h2::after{margin:14px auto 0}
 #projects .sub{color:var(--mu);text-align:center;font-size:14px;margin:10px 0 22px}
-.mur{position:relative;width:100%;aspect-ratio:1200/800;overflow:hidden;touch-action:pan-y;-webkit-mask-image:radial-gradient(ellipse at center,#000 62%,transparent 98%);mask-image:radial-gradient(ellipse at center,#000 62%,transparent 98%);background-size:cover;background-position:center}
+.mur{position:relative;width:100vw;margin-left:calc(50% - 50vw);aspect-ratio:1200/800;overflow:hidden;touch-action:pan-y;-webkit-mask-image:radial-gradient(ellipse at center,#000 70%,transparent 99%);mask-image:radial-gradient(ellipse at center,#000 70%,transparent 99%);background-size:cover;background-position:center}
 .mur canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .cvi{max-width:760px;margin:22px auto 0;padding:26px 28px;text-align:center}
 .cvi .in{transition:opacity .35s,transform .35s}
@@ -121,7 +121,7 @@ h2::after{content:"";display:block;width:64px;height:4px;border-radius:4px;backg
 #projects h2{font-size:clamp(30px,3.6vw,46px);margin-bottom:6px}
 #projects h2::after{margin-top:10px}
 #projects .sub{margin:8px 0 6px}
-.mur{align-self:center;width:auto;max-width:100%;height:clamp(240px,calc(100vh - 480px),680px)}
+.mur{align-self:center;width:100vw;max-width:none;margin-left:0;height:clamp(240px,calc(100vh - 480px),680px)}
 .cvi{align-self:center;width:100%;max-width:860px;margin-top:6px;padding:18px 26px}
 .cvi h3{font-size:20px;margin-bottom:6px}
 .cvi p{font-size:14px;line-height:1.55;margin-bottom:12px}
@@ -377,7 +377,7 @@ function showInfo(i){const d=D[i],first=shownItem<0;shownItem=i;info.classList.a
 info.innerHTML=`<div class="in"><div class="top"><b class="bd">${d[1]}</b><span class="ct2">${String(i+1).padStart(2,'0')} / ${String(M).padStart(2,'0')}</span></div><h3>${d[0]}</h3><p>${d[2]}</p><div class="ft"><div class="tags">${d[3].map(k=>`<span>${k}</span>`).join('')}</div>${d[4]?`<a href="${d[4]}" target="_blank" rel="noopener">View on GitHub ↗</a>`:'<em>Details on request</em>'}</div></div>`;info.classList.remove('sw')},first?0:200)}
 showInfo(0);
 /* config (the component's defaults) */
-const N=4,SPEED=50,HOLD=50,SCROLL=30,SCALE=100,HOVER=100,STEP_MS=1600,EASE=65,DRIFT=15,START=12,WALLH=58,ASPECT=164,GAPP=4,SCROLL_MS=2200,FACE=20,YAW=8,PITCH=5,PRESS=100,PEASE=180;
+const N=4,SPEED=50,HOLD=50,SCROLL=30,SCALE=100,HOVER=100,STEP_MS=1600,EASE=65,DRIFT=15,START=12,WALLH=64,ASPECT=200,GAPP=4,SCROLL_MS=2200,FACE=20,YAW=8,PITCH=5,PRESS=100,PEASE=180;
 const TAU=Math.PI*2,DEG=Math.PI/180,DW=800,REF=1200/800,BUDGET=4.2e6;
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
 const smoother=t=>t*t*t*(t*(t*6-15)+10);
