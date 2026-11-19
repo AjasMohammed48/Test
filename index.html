@@ -99,23 +99,27 @@ h2::after{content:"";display:block;width:64px;height:4px;border-radius:4px;backg
 .ex .co{color:var(--mu);font-size:14px;margin-bottom:10px}
 .ex li{margin:0 0 7px 18px;color:#d9cdd0;font-size:15px}
 .ex li::marker{color:var(--red)}
-/* projects */
-.pc{width:min(360px,78vw);display:flex;flex-direction:column;border-radius:24px}
-.pv{height:200px;position:relative;overflow:hidden;background:#200308}
-.pv img{width:100%;height:100%;object-fit:cover;display:block}
-.pv b{position:absolute;left:14px;bottom:14px;padding:4px 12px;border-radius:99px;font-size:12px;background:rgba(0,0,0,.55);border:1px solid var(--bd)}
-.pb{padding:20px}
-.pb h3{font:700 18px/1.25 var(--d);margin-bottom:8px}
-.pb p{font-size:13.5px;color:#d3c6c9;margin-bottom:12px;line-height:1.55}
-.pb .tags{margin:0 0 14px}.pb .tags span{font-size:11.5px;padding:3px 10px}
-.pb a{font-weight:700;font-size:14px;color:var(--red)}.pb em{font-size:13px;color:var(--mu);font-style:normal}
+/* projects: panorama ring (a square room of project pages, seen from its centre, turning one wall at a time) */
+#projects h2{text-align:center}#projects h2::after{margin:14px auto 0}
+#projects .sub{color:var(--mu);text-align:center;font-size:14px;margin:10px 0 22px}
+.mur{position:relative;width:100%;aspect-ratio:1200/800;background:#000;border:1px solid var(--bd);border-radius:22px;overflow:hidden;touch-action:pan-y;box-shadow:0 20px 50px rgba(0,0,0,.45);background-size:cover;background-position:center}
+.mur canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cvi{max-width:760px;margin:22px auto 0;padding:26px 28px;text-align:center}
+.cvi .in{transition:opacity .35s,transform .35s}
+.cvi.sw .in{opacity:0;transform:translateY(8px)}
+.cvi b.bd{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;background:rgba(255,43,63,.14);border:1px solid rgba(255,43,63,.35);margin-bottom:10px}
+.cvi h3{font:700 22px/1.25 var(--d);margin-bottom:8px}
+.cvi p{font-size:14.5px;color:#d3c6c9;line-height:1.6;margin-bottom:14px}
+.cvi .tags{justify-content:center;margin:0 0 16px}.cvi .tags span{font-size:12px;padding:4px 12px}
+.cvi a{font-weight:700;font-size:14px;color:var(--red)}.cvi em{font-size:13px;color:var(--mu);font-style:normal}
+.cvi .ct2{display:block;margin-top:14px;font:700 13px var(--d);color:var(--mu);letter-spacing:2px}
 /* cursor */
 #sp{position:fixed;inset:0;z-index:120;pointer-events:none}
 #cd,#cr{position:fixed;left:0;top:0;pointer-events:none;z-index:121;display:none;will-change:transform}
 body.fx #cd,body.fx #cr{display:block}
 #cd{width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#fff;box-shadow:0 0 12px var(--red),0 0 24px var(--red)}
 #cr{width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;border:1.5px solid rgba(255,43,63,.7)}
-body.fx,body.fx a,body.fx button,body.fx .it{cursor:none}
+body.fx,body.fx a,body.fx button,body.fx .it,body.fx .mur{cursor:none}
 body.fx input,body.fx textarea{cursor:text}
 /* misc */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
@@ -135,7 +139,7 @@ input:focus,textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(255
 textarea{min-height:120px;resize:vertical}
 footer{text-align:center;padding:40px 20px;color:var(--mu);font-size:13px;border-top:1px solid var(--bd)}
 a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
-@media(max-width:860px){#home,.ab,.sk,.two,.ct{grid-template-columns:1fr}#home{padding-top:110px}.ph{order:-1}.hi h1{font-size:min(8.4vw,64px)}nav a.l{display:none}.stats{grid-template-columns:repeat(2,1fr)}.tiles,#stack .tiles{grid-template-columns:1fr}.c1{left:0}}
+@media(max-width:860px){#home,.ab,.sk,.two,.ct{grid-template-columns:1fr}#home{padding-top:110px}.ph{order:-1}.hi h1{font-size:min(8.4vw,64px)}nav a.l{display:none}.stats{grid-template-columns:repeat(2,1fr)}.tiles,#stack .tiles{grid-template-columns:1fr}.c1{left:0}.cvi{padding:22px 18px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none;filter:none}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -226,8 +230,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
   </div>
 </section>
 
-<section id="projects" class="pin" data-per=".6">
-  <div class="sticky"><h2 class="rv">Projects</h2><p class="sub">Scroll to move along the curve · click a side card to bring it forward</p><div class="stage" id="prj"></div><div class="cnt"></div></div>
+<section id="projects">
+  <h2 class="rv">Projects</h2>
+  <p class="sub rv">Move your mouse to look around · press and hold to turn faster</p>
+  <div class="mur rv" id="mur" role="group" aria-label="Projects"><canvas id="murc"></canvas></div>
+  <div class="g cvi" id="cvi"></div>
 </section>
 
 <section id="achievements">
@@ -294,7 +301,7 @@ const S=[];let px=mx,py=my,rx=mx,ry=my,hov=0;
 const emit=(X,Y,n,sp)=>{for(let i=0;i<n;i++){const a=Math.random()*6.283,v=(.3+Math.random())*sp;S.push({x:X,y:Y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-.5,l:0,m:380+Math.random()*420,w:.8+Math.random()*1.8,h:Math.random()*42})}if(S.length>240)S.splice(0,S.length-240)};
 addEventListener('pointermove',e=>{const d=Math.hypot(e.clientX-px,e.clientY-py);if(d>2)emit(e.clientX,e.clientY,Math.min(4,1+(d/14|0)),Math.min(2.4,.6+d/25));px=e.clientX;py=e.clientY},{passive:true});
 addEventListener('pointerdown',e=>emit(e.clientX,e.clientY,28,5));
-document.addEventListener('pointerover',e=>{hov=e.target.closest&&e.target.closest('a,button,.it,input,textarea,[data-tilt]')?1:0});
+document.addEventListener('pointerover',e=>{hov=e.target.closest&&e.target.closest('a,button,.it,.mur,input,textarea,[data-tilt]')?1:0});
 tasks.push(dt=>{x.clearRect(0,0,W,H);x.globalCompositeOperation='lighter';x.lineCap='round';
 for(let i=S.length-1;i>=0;i--){const p=S[i];p.l+=dt;if(p.l>p.m){S.splice(i,1);continue}
 const k=1-p.l/p.m,ox=p.x,oy=p.y;p.vy+=.0024*dt;p.vx*=.985;p.x+=p.vx*dt/16;p.y+=p.vy*dt/16;
@@ -338,6 +345,8 @@ const n=Math.round(cur)+1;if(n!==shown){shown=n;cnt.textContent=String(n).padSta
 (()=>{const A=[['Python','Py','#ffd43b'],['SQL','SQL','#4fb3ff'],['Power BI','BI','#f2c811'],['Excel','Xl','#35d07f'],['DAX','Dx','#ff6b6b'],['Pandas','Pd','#a78bfa'],['Scikit-learn','Sk','#ff9a3c'],['PyTorch','Pt','#ff5a3c'],['XGBoost','Xg','#5ad1ff'],['LLMs & RAG','AI','#ff2b3f'],['Apache Spark','Sp','#ff8a00'],['Microsoft Fabric','Fb','#33d6a6'],['Streamlit','St','#ff4b6e'],['Git & AWS','Git','#ffa726']],st=$('#ars');
 const els=A.map(a=>{const e=document.createElement('div');e.className='g it ar';e.style.setProperty('--c',a[2]);e.innerHTML=`<i${a[1].length>2?' style="font-size:20px"':''}>${a[1]}</i><span>${a[0]}</span>`;st.appendChild(e);return e});
 curve($('#skills'),els,{per:.42,gap:1.18,curve:34,rot:16,depth:50,tilt:0,fade:.2})})();
+/* projects: WebGL panorama ring. A square room of 4 walls seen from its centre, turning one wall at a time;
+   the 8 project images (assets/p1..p8.jpg) take the walls in turn. Needs http(s), not file:// (WebGL blocks local images). */
 (()=>{const D=[
 ['OceanPulse: Physics-Constrained Ocean Intelligence','Patent granted','Physics-informed AI on Indian Ocean climate data (ERA5, CMEMS) with Dask and Zarr, real-time anomaly detection and a domain-constrained Ollama LLM interface.',['Python','Ollama','xarray','Dask','Zarr','React'],'https://github.com/AjasMohammed48/OceanPulse'],
 ['PriceIQ: AI-Powered Dynamic Pricing Engine','Machine learning','XGBoost demand forecasting plus a reinforcement learning (DQN, PyTorch) agent balancing revenue and fair pricing, fed by competitor and weather signals.',['Python','Streamlit','XGBoost','PyTorch','SQLite'],'https://github.com/AjasMohammed48/Dynamic-Pricing-Engine'],
@@ -346,10 +355,179 @@ curve($('#skills'),els,{per:.42,gap:1.18,curve:34,rot:16,depth:50,tilt:0,fade:.2
 ['Hybrid Recommendation Engine','Client work','Collaborative and content-based filtering combined to deliver personalised recommendations inside client software, evaluated before release.',['Python','Scikit-learn','Pandas']],
 ['Competitor Intelligence Tracker','Client work','Web scraping and external data turned into insight on market trends, competitive positioning and growth opportunities for clients.',['Python','Web scraping','Power BI']],
 ['Government ML Data Pipelines','KELTRON','Feature engineering and ETL across 5+ government datasets: 30% fewer ingestion errors, 40% less manual prep, 25% faster turnaround.',['Pandas','NumPy','ETL','EDA']],
-['AI Agents & Workflow Automation','Client work','LLM-based agents and A/B testing that automated repetitive analysis (about 40% time saved) and guided release decisions.',['Python','LLMs','A/B testing']]],st=$('#prj');
-const els=D.map((d,i)=>{const e=document.createElement('article');e.className='g it pc';
-e.innerHTML=`<div class="pv"><img src="assets/p${i+1}.jpg" alt="${d[0]} artwork" loading="lazy" decoding="async"><b>${d[1]}</b></div><div class="pb"><h3>${d[0]}</h3><p>${d[2]}</p><div class="tags">${d[3].map(k=>`<span>${k}</span>`).join('')}</div>${d[4]?`<a href="${d[4]}" target="_blank" rel="noopener">View on GitHub ↗</a>`:'<em>Details on request</em>'}</div>`;st.appendChild(e);return e});
-curve($('#projects'),els,{per:.6,gap:.95,curve:46,rot:34,depth:130,tilt:2.5,fade:.3})})();
+['AI Agents & Workflow Automation','Client work','LLM-based agents and A/B testing that automated repetitive analysis (about 40% time saved) and guided release decisions.',['Python','LLMs','A/B testing']]];
+const M=D.length,SRC=D.map((d,i)=>`assets/p${i+1}.jpg`);
+const root=$('#mur'),canvas=$('#murc'),info=$('#cvi');
+/* info panel under the ring: follows the wall facing you */
+let shownItem=-1;
+function showInfo(i){const d=D[i],first=shownItem<0;shownItem=i;info.classList.add('sw');setTimeout(()=>{
+info.innerHTML=`<div class="in"><b class="bd">${d[1]}</b><h3>${d[0]}</h3><p>${d[2]}</p><div class="tags">${d[3].map(k=>`<span>${k}</span>`).join('')}</div>${d[4]?`<a href="${d[4]}" target="_blank" rel="noopener">View on GitHub ↗</a>`:'<em>Details on request</em>'}<span class="ct2">${String(i+1).padStart(2,'0')} / ${String(M).padStart(2,'0')}</span></div>`;info.classList.remove('sw')},first?0:200)}
+showInfo(0);
+/* config (the component's defaults) */
+const N=4,SPEED=50,HOLD=50,SCROLL=30,SCALE=100,HOVER=100,STEP_MS=1600,EASE=65,DRIFT=15,START=12,WALLH=58,ASPECT=164,GAPP=4,SCROLL_MS=2200,FACE=20,YAW=8,PITCH=5,PRESS=100,PEASE=180;
+const TAU=Math.PI*2,DEG=Math.PI/180,DW=800,REF=1200/800,BUDGET=4.2e6;
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+const smoother=t=>t*t*t*(t*(t*6-15)+10);
+function bezierEase(x1,y1,x2,y2,t){if(t<=0)return 0;if(t>=1)return 1;const cx=3*x1,bx=3*(x2-x1)-cx,ax=1-cx-bx,cy=3*y1,by=3*(y2-y1)-cy,ay=1-cy-by;let lo=0,hi=1,s=t;for(let i=0;i<24;i++){s=(lo+hi)/2;const x=((ax*s+bx)*s+cx)*s;if(x<t)lo=s;else hi=s}return((ay*s+by)*s+cy)*s}
+const VERT=`
+attribute vec2 aCorner;
+uniform float uAngle;uniform float uHW;uniform float uHH;uniform float uGap;uniform float uPitch;
+uniform vec2 uFocal;uniform vec4 uShift;uniform vec2 uHalf;uniform vec4 uPage;uniform vec4 uRect;uniform vec2 uRot;uniform vec4 uUV;
+varying vec2 vUv;varying vec2 vClip;varying vec3 vPos;varying vec3 vNormal;
+void main(){
+vec2 l=(aCorner-0.5)*uRect.zw;
+vec2 d=uRect.xy+vec2(l.x*uRot.x-l.y*uRot.y,l.x*uRot.y+l.y*uRot.x);
+vec2 pn=uPage.xy+d*uPage.zw;
+vClip=pn;vUv=uUV.xy+aCorner*uUV.zw;
+float u=mix(-uHW*(1.0-uGap),uHW*(1.0-uGap),pn.x);
+float y=mix(uHH,-uHH,pn.y);
+float s=sin(uAngle);float c=cos(uAngle);
+vec3 p=vec3(s+u*c,y,-c+u*s);
+float ps=sin(uPitch);float pc=cos(uPitch);
+p=vec3(p.x,p.y*pc-p.z*ps,p.y*ps+p.z*pc);
+vec3 n=vec3(-s,0.0,c);
+vNormal=vec3(n.x,n.y*pc-n.z*ps,n.y*ps+n.z*pc);
+vPos=p;
+float near=0.02;float far=50.0;float w=-p.z;
+vec2 xy=vec2(p.x*uFocal.x,p.y*uFocal.y)*uHalf;
+xy=vec2(xy.x*uShift.z+xy.y*uShift.w,-xy.x*uShift.w+xy.y*uShift.z)/uHalf;
+gl_Position=vec4(xy+uShift.xy*w,(far+near)/(near-far)*p.z+2.0*far*near/(near-far),w);
+}`;
+const FRAG=`
+precision mediump float;
+uniform sampler2D uTex;uniform float uShade;uniform float uAlpha;
+varying vec2 vUv;varying vec2 vClip;varying vec3 vPos;varying vec3 vNormal;
+void main(){
+if(vClip.x<0.0||vClip.x>1.0||vClip.y<0.0||vClip.y>1.0)discard;
+float len=max(length(vPos),1e-4);
+float d=max(dot(normalize(vNormal),-vPos/len),0.0);
+float k=1.0-uShade*(1.0-d);
+vec4 col=texture2D(uTex,vUv);
+gl_FragColor=vec4(col.rgb*k,col.a)*uAlpha;
+}`;
+/* size, visibility, pointer */
+let lw=Math.max(1,root.offsetWidth),lh=Math.max(1,root.offsetHeight),visible=true,rectDue=true,running=false,raf=0;
+const ptr={cx:0,cy:0,moved:false,x:.5,y:.5,ex:.5,ey:.5,over:0,overE:0,down:0,downE:0};
+let rect=root.getBoundingClientRect();
+const wake=()=>{if(running||!visible||document.hidden||lost)return;running=true;lastT=0;lastDrawT=0;raf=requestAnimationFrame(tick)};
+new ResizeObserver(()=>{lw=Math.max(1,root.offsetWidth);lh=Math.max(1,root.offsetHeight);wake();if(running)draw(0)}).observe(root);
+new IntersectionObserver(es=>{visible=es[es.length-1].isIntersecting;if(visible)wake()}).observe(root);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)wake()});
+const onMove=e=>{if(e.clientX===ptr.cx&&e.clientY===ptr.cy&&ptr.over)return;ptr.cx=e.clientX;ptr.cy=e.clientY;ptr.moved=true;ptr.over=1;wake()};
+root.addEventListener('pointermove',onMove);root.addEventListener('pointerenter',onMove);
+root.addEventListener('pointerleave',()=>{ptr.over=0;ptr.down=0;wake()});
+root.addEventListener('pointerdown',e=>{onMove(e);ptr.down=1});
+const onUp=e=>{ptr.down=0;if(e.pointerType==='touch')ptr.over=0;wake()};
+addEventListener('pointerup',onUp);addEventListener('pointercancel',onUp);
+addEventListener('scroll',()=>{rectDue=true},true);
+/* GL */
+let gl=null,isGL2=false,aniso=null,maxTex=4096,prog=null,U={},lost=false,texScale=0,frameNo=0;
+const scratch=document.createElement('canvas'),sctx=scratch.getContext('2d');
+const imgTex=new Map(),imgCache=new Map();
+function upload(src){if(!gl)return null;const tex=gl.createTexture();if(!tex)return null;gl.bindTexture(gl.TEXTURE_2D,tex);gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);
+try{gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,src)}catch(e){gl.deleteTexture(tex);return null}
+gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+if(isGL2){gl.generateMipmap(gl.TEXTURE_2D);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);if(aniso)gl.texParameterf(gl.TEXTURE_2D,aniso.TEXTURE_MAX_ANISOTROPY_EXT,8)}
+else gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+return tex}
+function initGL(){const opts={antialias:true,alpha:true,premultipliedAlpha:true,preserveDrawingBuffer:false,powerPreference:'low-power'};
+const g2=canvas.getContext('webgl2',opts),g=g2||canvas.getContext('webgl',opts);if(!g)return false;
+gl=g;isGL2=!!g2;aniso=g.getExtension('EXT_texture_filter_anisotropic');maxTex=Math.min(8192,g.getParameter(g.MAX_TEXTURE_SIZE));
+const sh=(t,s)=>{const o=g.createShader(t);if(!o)return null;g.shaderSource(o,s);g.compileShader(o);return g.getShaderParameter(o,g.COMPILE_STATUS)?o:null};
+const vs=sh(g.VERTEX_SHADER,VERT),fs=sh(g.FRAGMENT_SHADER,FRAG),p=g.createProgram();if(!vs||!fs||!p)return false;
+g.attachShader(p,vs);g.attachShader(p,fs);g.linkProgram(p);if(!g.getProgramParameter(p,g.LINK_STATUS))return false;
+prog=p;g.useProgram(p);U={};
+for(const n of['uAngle','uHW','uHH','uGap','uPitch','uFocal','uShift','uHalf','uPage','uRect','uRot','uUV','uTex','uShade','uAlpha'])U[n]=g.getUniformLocation(p,n);
+const b=g.createBuffer();g.bindBuffer(g.ARRAY_BUFFER,b);g.bufferData(g.ARRAY_BUFFER,new Float32Array([0,0,1,0,0,1,0,1,1,0,1,1]),g.STATIC_DRAW);
+const a=g.getAttribLocation(p,'aCorner');g.enableVertexAttribArray(a);g.vertexAttribPointer(a,2,g.FLOAT,false,0,0);
+g.disable(g.DEPTH_TEST);g.enable(g.BLEND);g.blendFunc(g.ONE,g.ONE_MINUS_SRC_ALPHA);g.uniform1i(U.uTex,0);g.activeTexture(g.TEXTURE0);
+imgTex.clear();return true}
+canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();lost=true;gl=null});
+canvas.addEventListener('webglcontextrestored',()=>{lost=false;texScale=0;if(initGL())wake()});
+if(!initGL()){lost=true;root.style.backgroundImage=`url(${SRC[0]})`;return}
+/* a project image becomes a page texture (cover-fit; tall pictures scroll) */
+function imageTex(src,pageAspect){let rec=imgCache.get(src);
+if(!rec){const img=new Image();const r={img,state:'loading'};
+img.onload=()=>{const done=()=>{r.state='ok';wake()};if(img.decode)img.decode().then(done,done);else done()};
+img.onerror=()=>r.state='error';img.src=src;imgCache.set(src,r);return null}
+if(rec.state!=='ok'||!sctx)return null;
+const key=`${src}|${pageAspect.toFixed(3)}|${texScale}`,hit=imgTex.get(src);
+if(hit&&hit.key===key){hit.used=frameNo;return hit}
+if(hit&&gl)gl.deleteTexture(hit.tex);
+const iw=rec.img.naturalWidth||800,ih=rec.img.naturalHeight||800;
+let TW=Math.min(maxTex,Math.round(DW*texScale)),viewH=TW/pageAspect,fullH=TW*ih/iw,TH,dw,dh,dx;
+if(fullH<=viewH){TH=Math.round(viewH);dh=TH;dw=iw*TH/ih;dx=(TW-dw)/2}
+else{const k=Math.min(1,maxTex/fullH,Math.sqrt(6e6/(TW*fullH)));TW=Math.max(64,Math.round(TW*k));viewH=TW/pageAspect;fullH=TW*ih/iw;TH=Math.min(maxTex,Math.round(fullH));dw=TW;dh=TH;dx=0}
+scratch.width=TW;scratch.height=TH;sctx.setTransform(1,0,0,1,0,0);sctx.clearRect(0,0,TW,TH);sctx.drawImage(rec.img,dx,0,dw,dh);
+const tex=upload(scratch);if(!tex){rec.state='error';return null}
+const t={tex,vf:Math.min(1,viewH/TH),key,used:frameNo};imgTex.set(src,t);return t}
+/* loop */
+const scrollPos=new Float64Array(N),lastItem=new Int32Array(N).fill(-1);
+let phase=null,lastT=0,lastDrawT=0,skip=0,period=1000/60,quality=1,slowFor=0,goodFor=0,raiseLock=0,drawn=0;const gaps=[];
+function tick(now){if(!visible||document.hidden||lost){running=false;return}
+raf=requestAnimationFrame(tick);
+if(lastT){gaps.push(now-lastT);if(gaps.length>15)gaps.shift();if(gaps.length>=5){const s=gaps.slice().sort((a,b)=>a-b);period=s[s.length>>1]}}
+lastT=now;
+const every=Math.max(1,Math.floor(16.7/Math.max(1,period)+.1));
+if(++skip<every)return;skip=0;
+const dt=lastDrawT?Math.min((now-lastDrawT)/1000,1/20):0;
+if(lastDrawT&&drawn>30){const late=now-lastDrawT>every*period*1.6;
+if(late){slowFor++;goodFor=0}else{goodFor++;slowFor=Math.max(0,slowFor-1)}
+if(slowFor>30&&quality>.6){quality=Math.max(.6,quality*.85);slowFor=0;raiseLock=now+3000}
+else if(goodFor>180&&quality<1&&now>raiseLock){quality=Math.min(1,quality/.85);goodFor=0}}
+lastDrawT=now;
+const busy=draw(dt);drawn++;
+if(!busy){cancelAnimationFrame(raf);running=false}}
+function draw(dt){const g=gl;if(!g||!prog)return false;frameNo++;
+const hov=HOVER/50;let moving=false;
+if(ptr.moved||rectDue||drawn%30===0){rect=root.getBoundingClientRect();rectDue=false}
+if(ptr.moved){ptr.x=clamp((ptr.cx-rect.left)/Math.max(1,rect.width),0,1);ptr.y=clamp((ptr.cy-rect.top)/Math.max(1,rect.height),0,1);ptr.moved=false}
+const pk=dt>0?1-Math.exp(-dt/Math.max(.01,PEASE/1000)):0;
+ptr.overE+=(ptr.over-ptr.overE)*pk;ptr.downE+=(ptr.down-ptr.downE)*pk;ptr.ex+=(ptr.x-ptr.ex)*pk;ptr.ey+=(ptr.y-ptr.ey)*pk;
+if(Math.abs(ptr.over-ptr.overE)>1e-3||Math.abs(ptr.down-ptr.downE)>1e-3||(ptr.overE>1e-3&&(Math.abs(ptr.x-ptr.ex)>1e-4||Math.abs(ptr.y-ptr.ey)>1e-4)))moving=true;
+if(phase===null)phase=RM?0:START/100;
+const rate=RM?0:(SPEED/50)*(1+ptr.downE*(PRESS/100)*hov);
+if(rate>0)moving=true;
+const stepS=Math.max(.1,STEP_MS/1000);
+phase+=dt*rate/stepS;
+const kStep=Math.floor(phase),f=phase-kStep,m=Math.max(.05,1-clamp(HOLD,0,100)/100),e1=clamp(EASE,0,100)/100;
+const turn=bezierEase(e1,0,1-e1,1,Math.min(1,f/m)),d=clamp(DRIFT,0,90)/100;
+const steps=kStep+(1-d)*turn+d*f+d*(1-m)/2,step=TAU/N;
+const psi=steps*step+(ptr.ex-.5)*2*YAW*DEG*ptr.overE*hov;
+const pitch=(ptr.ey-.5)*2*PITCH*DEG*ptr.overE*hov;
+const dpr=Math.min(2,window.devicePixelRatio||1);
+let k=Math.min(2,dpr)*quality;if(lw*lh*k*k>BUDGET)k=Math.sqrt(BUDGET/(lw*lh));
+const cw=Math.max(1,Math.round(lw*k)),ch=Math.max(1,Math.round(lh*k));
+if(canvas.width!==cw||canvas.height!==ch){canvas.width=cw;canvas.height=ch}
+const aspect=ASPECT/100,gap=clamp(GAPP,0,50)/200,hw=Math.tan(Math.PI/N),hh=hw/aspect;
+const S=Math.min(lh,lw/REF),fpx=(WALLH/100*S*(SCALE/100))/(2*hh),fx=fpx/(lw/2),fy=fpx/(lh/2);
+const wallPx=2*fpx*hw*(1-gap)*k,want=wallPx>1.6*DW?2:wallPx>1.1*DW?1.5:1;
+if(want>texScale){texScale=want;imgTex.forEach(t=>g.deleteTexture(t.tex));imgTex.clear()}
+g.uniform1f(U.uHW,hw);g.uniform1f(U.uHH,hh);g.uniform1f(U.uGap,gap);g.uniform1f(U.uPitch,pitch);
+g.uniform2f(U.uFocal,fx,fy);g.uniform4f(U.uShift,0,0,1,0);g.uniform2f(U.uHalf,lw/2,lh/2);g.uniform1f(U.uShade,0);
+g.viewport(0,0,cw,ch);g.clearColor(0,0,0,0);g.clear(g.COLOR_BUFFER_BIT);
+const pageAspect=aspect*(1-gap),ph=DW/pageAspect;
+const faceA=FACE*DEG,scrollS=Math.max(.1,SCROLL_MS/1000),scrollAmt=clamp(SCROLL,0,100)/100;
+const halfFov=Math.atan(Math.hypot(lw,lh)/2/fpx)+YAW*DEG;
+let bestA=1e9,bestItem=0;
+g.uniform4f(U.uPage,0,0,1/DW,1/ph);g.uniform2f(U.uRot,1,0);g.uniform1f(U.uAlpha,1);
+for(let i=0;i<N;i++){
+const lap=Math.floor((psi-i*step+Math.PI)/TAU),rel=i*step-psi+lap*TAU,item=(((i+N*lap)%M)+M)%M;
+if(Math.abs(rel)<bestA){bestA=Math.abs(rel);bestItem=item}
+if(item!==lastItem[i]){lastItem[i]=item;scrollPos[i]=0}
+if(Math.abs(rel)>100*DEG)scrollPos[i]=0;
+else if(!RM&&Math.abs(rel)<faceA&&scrollPos[i]<1){scrollPos[i]=Math.min(1,scrollPos[i]+dt*rate/scrollS);if(rate>0)moving=true}
+if(Math.abs(rel)-step/2>halfFov)continue;
+const it=imageTex(SRC[item],pageAspect);if(!it)continue;
+g.uniform1f(U.uAngle,rel);
+const e=smoother(clamp(scrollPos[i],0,1)),over=1-it.vf,v0=Math.min(over,.5*over+e*scrollAmt*Math.min(over,2*it.vf));
+g.uniform4f(U.uRect,DW/2,ph/2,DW,ph);g.uniform4f(U.uUV,0,v0,1,it.vf);
+g.bindTexture(g.TEXTURE_2D,it.tex);g.drawArrays(g.TRIANGLES,0,6)}
+imgTex.forEach((t,k2)=>{if(frameNo-t.used>120){g.deleteTexture(t.tex);imgTex.delete(k2)}});
+if(bestA<step/2&&bestItem!==shownItem)showInfo(bestItem);
+return moving}
+wake();
+})();
 $('#cf').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target);
 location.href=`mailto:ajasmohd48@gmail.com?subject=${encodeURIComponent('Portfolio enquiry from '+f.get('n'))}&body=${encodeURIComponent(f.get('m')+'\n\n'+f.get('n')+'\n'+f.get('e'))}`});
 </script>
