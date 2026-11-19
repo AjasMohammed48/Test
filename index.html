@@ -79,9 +79,12 @@ h2::after{content:"";display:block;width:64px;height:4px;border-radius:4px;backg
 .it::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#000;opacity:var(--dim,0);pointer-events:none}
 .it.g{-webkit-backdrop-filter:none;backdrop-filter:none;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(120,10,25,.24) 60%,rgba(18,4,8,.85))}
 .cnt{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font:700 13px var(--d);color:var(--mu);letter-spacing:2px}
-.ar{width:150px;height:224px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;border-radius:26px}
-.ar i{width:66px;height:66px;border-radius:15px;display:grid;place-items:center;font:800 26px var(--d);font-style:normal;background:#0c0710;border:2px solid var(--c);color:var(--c);box-shadow:0 0 26px color-mix(in srgb,var(--c) 45%,transparent)}
-.ar span{font-weight:700;font-size:13.5px;color:#ddd0d2;text-align:center}
+/* skills as keyboard keys: no panel, each key its own colour, blended into the background */
+.key{width:190px;height:234px}
+.it.key::after{display:none}
+.key .kv{display:block;width:190px;height:190px;overflow:visible;filter:drop-shadow(0 0 4px rgba(255,255,255,.75)) drop-shadow(0 0 16px color-mix(in srgb,var(--c) 70%,transparent)) brightness(calc(1 - var(--dim,0)))}
+.key .kv text{font-family:var(--d)}
+.key .nm{display:block;text-align:center;font-weight:700;font-size:13.5px;color:#e9e0e3;margin-top:4px;text-shadow:0 0 12px color-mix(in srgb,var(--c) 60%,transparent)}
 .flat .sticky{position:static;height:auto;overflow:visible;padding:110px 20px 40px}.flat .stage{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-height:none;perspective:none}.flat .it{position:relative;left:auto;top:auto}.flat .cnt{display:none}
 #stack .tiles{grid-template-columns:repeat(3,1fr);perspective:900px}
 .tile{padding:20px;transition:transform .15s ease-out;transform-style:preserve-3d}
@@ -355,8 +358,30 @@ const ry=Math.max(-75,Math.min(75,-d*cfg.rot));
 el.style.transform=`translate(-50%,-50%) translate3d(${d*cw*cfg.gap}px,${d*d*cfg.curve}px,${-Math.min(a,3)*cfg.depth}px) rotateY(${ry}deg) rotateZ(${d*cfg.tilt}deg) scale(${1-Math.min(a,3)*.06})`;
 el.style.opacity=o;el.style.zIndex=100-Math.round(a*10);el.style.pointerEvents=a<.5?'auto':'none';el.style.setProperty('--dim',Math.min(.6,a*.35))}
 const n=Math.round(cur)+1;if(n!==shown){shown=n;cnt.textContent=String(n).padStart(2,'0')+' / '+String(N).padStart(2,'0')}})}
-(()=>{const A=[['Python','Py','#ffd43b'],['SQL','SQL','#4fb3ff'],['Power BI','BI','#f2c811'],['Excel','Xl','#35d07f'],['DAX','Dx','#ff6b6b'],['Pandas','Pd','#a78bfa'],['Scikit-learn','Sk','#ff9a3c'],['PyTorch','Pt','#ff5a3c'],['XGBoost','Xg','#5ad1ff'],['LLMs & RAG','AI','#ff2b3f'],['Apache Spark','Sp','#ff8a00'],['Microsoft Fabric','Fb','#33d6a6'],['Streamlit','St','#ff4b6e'],['Git & AWS','Git','#ffa726']],st=$('#ars');
-const els=A.map(a=>{const e=document.createElement('div');e.className='g it ar';e.style.setProperty('--c',a[2]);e.innerHTML=`<i${a[1].length>2?' style="font-size:20px"':''}>${a[1]}</i><span>${a[0]}</span>`;st.appendChild(e);return e});
+(()=>{const A=[['Python','Py','#ffd23f','#ff7a18'],['SQL','SQL','#3b82f6','#22d3ee'],['Power BI','BI','#f97316','#fde047'],['Excel','Xl','#22c55e','#2dd4bf'],['DAX','Dx','#ef4444','#f472b6'],['Pandas','Pd','#8b5cf6','#38bdf8'],['Scikit-learn','Sk','#fb7185','#fbbf24'],['PyTorch','Pt','#ec4899','#8b5cf6'],['XGBoost','Xg','#06b6d4','#3b82f6'],['LLMs & RAG','AI','#d946ef','#fbbf24'],['Apache Spark','Sp','#84cc16','#fde047'],['Microsoft Fabric','Fb','#14b8a6','#6366f1'],['Streamlit','St','#6366f1','#ec4899'],['Git & AWS','Git','#cbd5e1','#a78bfa']],st=$('#ars');
+/* glass keycap, drawn as an isometric SVG: dark translucent sides, rainbow-lit edges, glowing rim, the skill on the dished top */
+const kv=(i,l)=>{const s=l.length>2?12:17;return `<svg class="kv" viewBox="0 0 200 200" aria-hidden="true"><defs>
+<linearGradient id="ga${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c2)"/><stop offset=".32" stop-color="#fff"/><stop offset=".62" style="stop-color:var(--c)"/><stop offset="1" style="stop-color:var(--c2)"/></linearGradient>
+<linearGradient id="gl${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#050408"/><stop offset=".55" style="stop-color:var(--c);stop-opacity:.22"/><stop offset="1" style="stop-color:var(--c2);stop-opacity:.55"/></linearGradient>
+<linearGradient id="gr${i}" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050408"/><stop offset=".5" style="stop-color:var(--c2);stop-opacity:.25"/><stop offset="1" style="stop-color:var(--c);stop-opacity:.6"/></linearGradient>
+<linearGradient id="gv${i}" gradientUnits="userSpaceOnUse" x1="100" y1="90" x2="100" y2="186"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#cfd3e8"/><stop offset="1" style="stop-color:var(--c)"/></linearGradient>
+<radialGradient id="gd${i}" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#030206"/><stop offset=".65" stop-color="#0a0710"/><stop offset="1" style="stop-color:var(--c);stop-opacity:.55"/></radialGradient>
+</defs>
+<polygon points="50,50 100,90 100,186 14,108" fill="url(#gl${i})"/>
+<polygon points="100,90 150,50 186,108 100,186" fill="url(#gr${i})"/>
+<polygon points="58,61 96,91 96,99 58,70" fill="#fff" opacity=".07"/>
+<polygon points="142,61 104,91 104,99 142,70" fill="#fff" opacity=".05"/>
+<polygon points="54,54.4 100,21.3 146,54.4 179.1,107.8 100,179.5 20.9,107.8" fill="none" stroke="url(#ga${i})" stroke-width="1" stroke-dasharray="2 1.6" opacity=".75"/>
+<path fill-rule="evenodd" d="M50 50L100 14L150 50L100 90Z M68 52L100 33L132 52L100 72Z" fill="url(#ga${i})" opacity=".88"/>
+<polygon points="68,52 100,33 132,52 100,72" fill="url(#gd${i})"/>
+<path d="M50 50L68 52M100 14L100 33M150 50L132 52M100 90L100 72" stroke="#fff" stroke-opacity=".55" stroke-width=".8"/>
+<path d="M76 59Q100 69 124 58" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1"/>
+<polygon points="50,50 100,14 150,50 186,108 100,186 14,108" fill="none" stroke="url(#ga${i})" stroke-width="2.4" stroke-linejoin="round"/>
+<polygon points="50,50 100,14 150,50 186,108 100,186 14,108" fill="none" stroke="#fff" stroke-width=".8" stroke-opacity=".9" stroke-linejoin="round"/>
+<path d="M50 50L100 90L150 50" fill="none" stroke="url(#ga${i})" stroke-width="2" stroke-linejoin="round"/>
+<line x1="100" y1="90" x2="100" y2="186" stroke="url(#gv${i})" stroke-width="3"/>
+<text x="100" y="53" text-anchor="middle" dominant-baseline="central" font-size="${s}" font-weight="800" fill="#fff" style="filter:drop-shadow(0 0 3px #fff)">${l}</text></svg>`};
+const els=A.map((a,i)=>{const e=document.createElement('div');e.className='it key';e.style.setProperty('--c',a[2]);e.style.setProperty('--c2',a[3]);e.innerHTML=kv(i,a[1])+`<span class="nm">${a[0]}</span>`;st.appendChild(e);return e});
 curve($('#skills'),els,{per:.42,gap:1.18,curve:34,rot:16,depth:50,tilt:0,fade:.2})})();
 /* projects: WebGL panorama ring. A square room of 4 walls seen from its centre, turning one wall at a time;
    the 8 project images (assets/p1..p8.jpg) take the walls in turn. Needs http(s), not file:// (WebGL blocks local images). */
