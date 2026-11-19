@@ -102,17 +102,30 @@ h2::after{content:"";display:block;width:64px;height:4px;border-radius:4px;backg
 /* projects: panorama ring (a square room of project pages, seen from its centre, turning one wall at a time) */
 #projects h2{text-align:center}#projects h2::after{margin:14px auto 0}
 #projects .sub{color:var(--mu);text-align:center;font-size:14px;margin:10px 0 22px}
-.mur{position:relative;width:100%;aspect-ratio:1200/800;background:#000;border:1px solid var(--bd);border-radius:22px;overflow:hidden;touch-action:pan-y;box-shadow:0 20px 50px rgba(0,0,0,.45);background-size:cover;background-position:center}
+.mur{position:relative;width:100%;aspect-ratio:1200/800;overflow:hidden;touch-action:pan-y;-webkit-mask-image:radial-gradient(ellipse at center,#000 62%,transparent 98%);mask-image:radial-gradient(ellipse at center,#000 62%,transparent 98%);background-size:cover;background-position:center}
 .mur canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .cvi{max-width:760px;margin:22px auto 0;padding:26px 28px;text-align:center}
 .cvi .in{transition:opacity .35s,transform .35s}
 .cvi.sw .in{opacity:0;transform:translateY(8px)}
-.cvi b.bd{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;background:rgba(255,43,63,.14);border:1px solid rgba(255,43,63,.35);margin-bottom:10px}
+.cvi .top{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px}
+.cvi b.bd{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;background:rgba(255,43,63,.14);border:1px solid rgba(255,43,63,.35)}
+.cvi .ft{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 18px}
 .cvi h3{font:700 22px/1.25 var(--d);margin-bottom:8px}
 .cvi p{font-size:14.5px;color:#d3c6c9;line-height:1.6;margin-bottom:14px}
-.cvi .tags{justify-content:center;margin:0 0 16px}.cvi .tags span{font-size:12px;padding:4px 12px}
+.cvi .tags{justify-content:center;margin:0}.cvi .tags span{font-size:12px;padding:4px 12px}
 .cvi a{font-weight:700;font-size:14px;color:var(--red)}.cvi em{font-size:13px;color:var(--mu);font-style:normal}
-.cvi .ct2{display:block;margin-top:14px;font:700 13px var(--d);color:var(--mu);letter-spacing:2px}
+.cvi .ct2{font:700 13px var(--d);color:var(--mu);letter-spacing:2px}
+/* desktop: heading, ring and description all fit in one screen */
+@media(min-width:861px){
+#projects{min-height:calc(100vh - 90px);display:flex;flex-direction:column;justify-content:center;padding-top:30px;padding-bottom:30px}
+#projects h2{font-size:clamp(30px,3.6vw,46px);margin-bottom:6px}
+#projects h2::after{margin-top:10px}
+#projects .sub{margin:8px 0 6px}
+.mur{align-self:center;width:auto;max-width:100%;height:clamp(240px,calc(100vh - 480px),680px)}
+.cvi{align-self:center;width:100%;max-width:860px;margin-top:6px;padding:18px 26px}
+.cvi h3{font-size:20px;margin-bottom:6px}
+.cvi p{font-size:14px;line-height:1.55;margin-bottom:12px}
+}
 /* cursor */
 #sp{position:fixed;inset:0;z-index:120;pointer-events:none}
 #cd,#cr{position:fixed;left:0;top:0;pointer-events:none;z-index:121;display:none;will-change:transform}
@@ -361,7 +374,7 @@ const root=$('#mur'),canvas=$('#murc'),info=$('#cvi');
 /* info panel under the ring: follows the wall facing you */
 let shownItem=-1;
 function showInfo(i){const d=D[i],first=shownItem<0;shownItem=i;info.classList.add('sw');setTimeout(()=>{
-info.innerHTML=`<div class="in"><b class="bd">${d[1]}</b><h3>${d[0]}</h3><p>${d[2]}</p><div class="tags">${d[3].map(k=>`<span>${k}</span>`).join('')}</div>${d[4]?`<a href="${d[4]}" target="_blank" rel="noopener">View on GitHub ↗</a>`:'<em>Details on request</em>'}<span class="ct2">${String(i+1).padStart(2,'0')} / ${String(M).padStart(2,'0')}</span></div>`;info.classList.remove('sw')},first?0:200)}
+info.innerHTML=`<div class="in"><div class="top"><b class="bd">${d[1]}</b><span class="ct2">${String(i+1).padStart(2,'0')} / ${String(M).padStart(2,'0')}</span></div><h3>${d[0]}</h3><p>${d[2]}</p><div class="ft"><div class="tags">${d[3].map(k=>`<span>${k}</span>`).join('')}</div>${d[4]?`<a href="${d[4]}" target="_blank" rel="noopener">View on GitHub ↗</a>`:'<em>Details on request</em>'}</div></div>`;info.classList.remove('sw')},first?0:200)}
 showInfo(0);
 /* config (the component's defaults) */
 const N=4,SPEED=50,HOLD=50,SCROLL=30,SCALE=100,HOVER=100,STEP_MS=1600,EASE=65,DRIFT=15,START=12,WALLH=58,ASPECT=164,GAPP=4,SCROLL_MS=2200,FACE=20,YAW=8,PITCH=5,PRESS=100,PEASE=180;
